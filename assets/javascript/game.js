@@ -129,5 +129,5 @@
         guesses_leftd.innerHTML = "number of guesses left: " + guesses_remaining;
         guessed.innerHTML = "letters you've guessed: " + guessed_letters; 
         wordspace.innerHTML = ws;
-        document.write(word);
+        
         //update
