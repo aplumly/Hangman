@@ -4,9 +4,10 @@
         let boolio                  = new Array();//use this to determine if letters display
         let guesses_remaining       =12;
         let times_guessed           =0;
-        let wordset                 = new Array("how","now","brown",
-                                    "cow","whiskey","boot","texas","sherrif",
-                                    "hangman","noose","game","poker","colt");
+        let wordset                 = new Array("marshall","bandit","holster",
+                                    "cowboy","whiskey","boot","texas","sherrif",
+                                    "hangman","noose","game","poker","colt",
+                                    "pony","cowgirl","outlaw");
         let guess                   = "";
         let wins                    = 0;
         let losses                  = 0;
@@ -44,7 +45,7 @@
             let a=1;
             for(let i=0;i<=word.length-1;i++)
             {   
-                if(boolio[i]==true){ws=ws+word[i];}
+                if(boolio[i]==true || word[i]===" "){ws=ws+word[i];}
                 else{ws=ws+"_";}
             }
            
