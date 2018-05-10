@@ -19,9 +19,10 @@
         let guessed_letters         = new Array();
         let boolio                  = new Array();//use this to determine if letters display
         let guesses_remaining       =12;
+        let times_guessed           =0;
         let wordset                 = new Array("how","now","brown",
-                                    "cow","armour","spear","spiral","trebuchet",
-                                    "hangman","noose","game","flame","plague");
+                                    "cow","whiskey","boot","texas","sherrif",
+                                    "hangman","noose","game","poker","colt");
         let guess                   = "";
         let wins                    = 0;
         let losses                  = 0;
@@ -34,12 +35,21 @@
         let guesses_leftd           = document.getElementById("guesses_left");
         let guessed                 = document.getElementById("guessed");
         let wordspace               = document.getElementById("wordspace");
+        let hangman_pic             = document.getElementById("hangman");
         boolio.length               = word.length;
         
         function new_word()
         {   
             seed = Math.floor(Math.random()*wordset.length);
             word = wordset[seed];
+        }
+
+
+        function hangman_picture()
+        {   let temp = "assets/images/hangman"
+            temp = temp+times_guessed;
+            temp = temp+".png"; 
+            hangman_pic.src=temp;
         }
 
         function update_wordspace()
@@ -60,8 +70,9 @@
             winsd.innerHTML = "number of wins: " + wins;
             lossesd.innerHTML = "number of losses: " + losses;
             guesses_leftd.innerHTML = "number of guesses left: " + guesses_remaining;
-            guessed.innerHTML = "letters you've guessed: " + guessed_letters; 
+            guessed.innerHTML =  guessed_letters; 
             wordspace.innerHTML = ws;
+            hangman_picture();
         }
 
         function guess_list()
@@ -69,7 +80,7 @@
                 check=false;
                 for(let i=guessed_letters.length; i>=0; i--)
                 {if(guessed_letters[i-1]==guess){check=true;}}
-                if(check==false){guessed_letters.push(guess);guesses_remaining--;}
+                if(check==false){guessed_letters.push(guess);times_guessed++;guesses_remaining--;}
                 check=false;
         }
 
@@ -83,6 +94,7 @@
             update_data();
             losses++;
             guesses_remaining       =12;
+            times_guessed           =0;
 
         }
 
@@ -105,6 +117,7 @@
             update_data();
             wins++;
             guesses_remaining       =12;
+            times_guessed           =0;
         }
 
         document.onkeyup = function(event) {
@@ -127,7 +140,7 @@
         winsd.innerHTML = "number of wins: " + wins;
         lossesd.innerHTML = "number of losses: " + losses;
         guesses_leftd.innerHTML = "number of guesses left: " + guesses_remaining;
-        guessed.innerHTML = "letters you've guessed: " + guessed_letters; 
+        guessed.innerHTML = guessed_letters; 
         wordspace.innerHTML = ws;
         
         //update

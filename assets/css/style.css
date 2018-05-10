@@ -1,5 +1,31 @@
+@font-face{    font-family: vanilla_whale;
+    src: url(../fonts/vanilla\ whale.ttf);
+
+}
+@font-face{
+        font-family: panhead;
+    src: url(../fonts/PANHEAD_.ttf);
+}
 body{background-color:black;
 height:100%;
 color:white;}
 
 #wordspace{letter-spacing:10px;}
+
+table, th, td {
+    border: 1px solid white;
+    height:400px;
+    margin:0 auto;
+    font-family:panhead;
+    font-size: 60px;
+ }
+
+ #main{margin:0 auto;}
+
+ #header{text-align: center;
+    font-family: vanilla_whale;
+    font-size:80px;
+    }
+
+
+#hangman{margin-left:10%;}
