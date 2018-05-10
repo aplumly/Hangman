@@ -1,20 +1,4 @@
-        /*//create array to store possible words
-        let guesses_remaining;
-        let guessed_letters = new Array();
-        let guess;
-        let word;
-        let wins;
-        let losses;
-        
 
-        
-        //1() function to get selected key
-
-        //2()function to check your guess with word variable
-
-        //3()function to change display
-        
-        //4()function(s) to handle win/loss*/
         
         let guessed_letters         = new Array();
         let boolio                  = new Array();//use this to determine if letters display
@@ -36,6 +20,8 @@
         let guessed                 = document.getElementById("guessed");
         let wordspace               = document.getElementById("wordspace");
         let hangman_pic             = document.getElementById("hangman");
+        let message                 = document.getElementById("message");
+        let game                    = true;
         boolio.length               = word.length;
         
         function new_word()
@@ -73,6 +59,7 @@
             guessed.innerHTML =  guessed_letters; 
             wordspace.innerHTML = ws;
             hangman_picture();
+            
         }
 
         function guess_list()
@@ -91,10 +78,12 @@
             boolio.length           = 0;
             new_word();
             update_wordspace();
-            update_data();
             losses++;
+             lossesd.innerHTML = "number of losses: " + losses;
             guesses_remaining       =12;
             times_guessed           =0;
+            game                    = false;
+            message.innerHTML       = "you lose!  press spacebar to reset";
 
         }
 
@@ -114,14 +103,19 @@
             boolio.length           = 0;
             new_word();
             update_wordspace();
-            update_data();
+            //update_data();
             wins++;
+            winsd.innerHTML = "number of wins: " + wins;
             guesses_remaining       =12;
             times_guessed           =0;
+            game                    = false;
+            message.innerHTML       = "you win!  press space bar to restart";
         }
 
         document.onkeyup = function(event) {
             guess = event.key;
+
+            if(game){
             for(let i=0;i<word.length;i++){
             if(guess==word[i])
             { 
@@ -131,10 +125,20 @@
             }
             guess_list();
             update_wordspace();
+            update_data();
             if(win_check()){win();}
             if(guesses_remaining===0){lose();}
-            update_data();
+            
+            }
 
+            if(!game)
+            {   
+                if(guess==" "){
+                    message.innerHTML = "";
+                    update_data();
+                    game=true;}
+
+            }
         };
 
         winsd.innerHTML = "number of wins: " + wins;
