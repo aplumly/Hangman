@@ -22,6 +22,7 @@
         let wordspace               = document.getElementById("wordspace");
         let hangman_pic             = document.getElementById("hangman");
         let message                 = document.getElementById("message");
+        let gptext                  = document.getElementById("gptext");
         let game                    = true;
         boolio.length               = word.length;
         let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
@@ -39,7 +40,8 @@
 
 
         function hangman_picture()
-        {   let temp = "assets/images/hangman"
+        {   hangman_pic.style.marginTop = "0px";
+            let temp = "assets/images/hangman"
             temp = temp+times_guessed;
             temp = temp+".png"; 
             hangman_pic.src=temp;
@@ -59,7 +61,8 @@
         update_wordspace();
 
         function update_data()
-        {
+        {   
+            gptext.innerHTML = "guessed letters: ";
             winsd.innerHTML = "number of wins: " + wins;
             lossesd.innerHTML = "number of losses: " + losses;
             guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
@@ -67,6 +70,19 @@
             wordspace.innerHTML = ws;
             hangman_picture();
             
+            
+        }
+
+
+        function clear_data()
+        {
+            winsd.innerHTML = "";
+            lossesd.innerHTML = "";
+            guesses_leftd.innerHTML = "";
+            guessed.innerHTML = "";
+            wordspace.innerHTML = "";
+            hangman_pic.src = "#"
+            gptext.innerHTML = "";
         }
 
         function guess_list()
@@ -87,7 +103,7 @@
             new_word();
             update_wordspace();
             losses++;
-            lossesd.innerHTML      = "number of losses: " + losses;
+            lossesd.innerHTML       = "number of losses: " + losses;
             guesses_remaining       =12;
             times_guessed           =0;
             game                    = false;
@@ -111,13 +127,15 @@
             boolio.length           = 0;
             new_word();
             update_wordspace();
-            //update_data();
+            clear_data();
             wins++;
-            winsd.innerHTML         = "number of wins: " + wins;
+            //winsd.innerHTML         = "number of wins: " + wins;
             guesses_remaining       =  12;
             times_guessed           = 0;
             game                    = false;
             message.innerHTML       = "you win!  press space bar to restart";
+            hangman_pic.style.marginTop = "200px";
+            hangman_pic.src         = "assets/images/hangman.gif"
         }
 
 
@@ -164,7 +182,7 @@
         good_bad_ugly.play();
         
         };
-        
+        gptext.innerHTML = "guessed letters: ";
         winsd.innerHTML = "number of wins: " + wins;
         lossesd.innerHTML = "number of losses: " + losses;
         guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
