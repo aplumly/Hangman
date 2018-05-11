@@ -24,7 +24,7 @@
         let message                 = document.getElementById("message");
         let game                    = true;
         boolio.length               = word.length;
-        
+        let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
         function new_word()
         {   
             seed = Math.floor(Math.random()*wordset.length);
@@ -56,7 +56,7 @@
         {
             winsd.innerHTML = "number of wins: " + wins;
             lossesd.innerHTML = "number of losses: " + losses;
-            guesses_leftd.innerHTML = "number of guesses left: " + guesses_remaining;
+            guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
             guessed.innerHTML =  guessed_letters; 
             wordspace.innerHTML = ws;
             hangman_picture();
@@ -68,7 +68,8 @@
                 check=false;
                 for(let i=guessed_letters.length; i>=0; i--)
                 {if(guessed_letters[i-1]==guess){check=true;}}
-                if(check==false){guessed_letters.push(guess);times_guessed++;guesses_remaining--;}
+                if(check==false){if(guess != " "){guessed_letters.push(guess);
+                    times_guessed++;guesses_remaining--;}}
                 check=false;
         }
 
@@ -80,7 +81,7 @@
             new_word();
             update_wordspace();
             losses++;
-             lossesd.innerHTML = "number of losses: " + losses;
+             lossesd.innerHTML      = "number of losses: " + losses;
             guesses_remaining       =12;
             times_guessed           =0;
             game                    = false;
@@ -106,21 +107,29 @@
             update_wordspace();
             //update_data();
             wins++;
-            winsd.innerHTML = "number of wins: " + wins;
-            guesses_remaining       =12;
-            times_guessed           =0;
+            winsd.innerHTML         = "number of wins: " + wins;
+            guesses_remaining       =  12;
+            times_guessed           = 0;
             game                    = false;
             message.innerHTML       = "you win!  press space bar to restart";
         }
 
         document.onkeyup = function(event) {
             guess = event.key;
-
+            let d = false;
+            for(let i=0;i<acceptable_keys.length;i++)
+            {
+                if(guess==acceptable_keys[i])
+                {d=true;}
+            }
+            if(d==true){
             if(game){
             for(let i=0;i<word.length;i++){
             if(guess==word[i])
             { 
                 boolio[i]=true;
+                times_guessed--;
+                guesses_remaining++;
             }
 
             }
@@ -140,11 +149,12 @@
                     game=true;}
 
             }
+        }
         };
 
         winsd.innerHTML = "number of wins: " + wins;
         lossesd.innerHTML = "number of losses: " + losses;
-        guesses_leftd.innerHTML = "number of guesses left: " + guesses_remaining;
+        guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
         guessed.innerHTML = guessed_letters; 
         wordspace.innerHTML = ws;
         
