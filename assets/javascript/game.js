@@ -27,9 +27,9 @@
         let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
         let gen_purpose_var;
        // var good_bad_ugly           = document.getElementById("music");
-       // var good_bad_ugly           = new sound("goodbadugly.mp3"); 
+        var good_bad_ugly           = new Audio("assets/audio/goodbadugly.mp3"); 
         
-       // window.onload = good_bad_ugly.play("goodbadugly.mp3");
+       
       
         function new_word()
         {   
@@ -120,6 +120,8 @@
             message.innerHTML       = "you win!  press space bar to restart";
         }
 
+
+
         document.onkeyup = function(event) {
             guess = event.key;
             let d = false;
@@ -159,12 +161,14 @@
             }
         }
         gen_purpose_var = false;
+        good_bad_ugly.play();
+        
         };
         
         winsd.innerHTML = "number of wins: " + wins;
         lossesd.innerHTML = "number of losses: " + losses;
         guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
         guessed.innerHTML = guessed_letters; 
-        wordspace.innerHTML = ws;
-        
+        wordspace.innerHTML = "press space to play";
+        game=false;
         //update
