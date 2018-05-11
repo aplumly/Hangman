@@ -27,9 +27,9 @@
         let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
         let gen_purpose_var;
        // var good_bad_ugly           = document.getElementById("music");
-        var good_bad_ugly           = new Audio("goodbadugly.mp3"); 
+       // var good_bad_ugly           = new sound("goodbadugly.mp3"); 
         
-        Window.onload = good_bad_ugly.play();
+       // window.onload = good_bad_ugly.play("goodbadugly.mp3");
       
         function new_word()
         {   
