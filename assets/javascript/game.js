@@ -25,6 +25,7 @@
         let game                    = true;
         boolio.length               = word.length;
         let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
+        let gen_purpose_var;
         function new_word()
         {   
             seed = Math.floor(Math.random()*wordset.length);
@@ -69,7 +70,7 @@
                 for(let i=guessed_letters.length; i>=0; i--)
                 {if(guessed_letters[i-1]==guess){check=true;}}
                 if(check==false){if(guess != " "){guessed_letters.push(guess);
-                    times_guessed++;guesses_remaining--;}}
+                    if(!gen_purpose_var){times_guessed++;guesses_remaining--;}}}
                 check=false;
         }
 
@@ -81,7 +82,7 @@
             new_word();
             update_wordspace();
             losses++;
-             lossesd.innerHTML      = "number of losses: " + losses;
+            lossesd.innerHTML      = "number of losses: " + losses;
             guesses_remaining       =12;
             times_guessed           =0;
             game                    = false;
@@ -117,6 +118,7 @@
         document.onkeyup = function(event) {
             guess = event.key;
             let d = false;
+            gen_purpose_var = false;
             for(let i=0;i<acceptable_keys.length;i++)
             {
                 if(guess==acceptable_keys[i])
@@ -127,9 +129,10 @@
             for(let i=0;i<word.length;i++){
             if(guess==word[i])
             { 
+
+                gen_purpose_var = true;
                 boolio[i]=true;
-                times_guessed--;
-                guesses_remaining++;
+
             }
 
             }
@@ -150,6 +153,7 @@
 
             }
         }
+        gen_purpose_var = false;
         };
 
         winsd.innerHTML = "number of wins: " + wins;
