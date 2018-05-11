@@ -27,7 +27,7 @@ table, th, td {
 #bg{position:absolute;
 top:205px;
 z-index: -1;
-height:810px;
+height:820px;
 width:795px;}
 
 #main{margin:0 auto;}
@@ -40,3 +40,6 @@ width:795px;}
 
 #hangman{margin-left:10%;}
 
+#message{margin-left:8%;}
+
+#linkspace{margin-left:8%;}
