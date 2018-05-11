@@ -26,6 +26,11 @@
         boolio.length               = word.length;
         let acceptable_keys         ="abcdefghijklmnopqrstuvwxyz ";
         let gen_purpose_var;
+       // var good_bad_ugly           = document.getElementById("music");
+        var good_bad_ugly           = new Audio("goodbadugly.mp3"); 
+        
+        Window.onload = good_bad_ugly.play();
+      
         function new_word()
         {   
             seed = Math.floor(Math.random()*wordset.length);
@@ -155,7 +160,7 @@
         }
         gen_purpose_var = false;
         };
-
+        
         winsd.innerHTML = "number of wins: " + wins;
         lossesd.innerHTML = "number of losses: " + losses;
         guesses_leftd.innerHTML = "number of incorrect guesses left: " + guesses_remaining;
