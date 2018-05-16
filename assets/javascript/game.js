@@ -153,7 +153,7 @@
             game                    = false;
             message.innerHTML       = "you win!  press space bar to restart";
             hangman_pic.style.marginTop = "200px";
-            hangman_pic.src         = "assets/images/hangman.gif"
+            hangman_pic.src         = "assets/images/hangman.gif";
             wordspace.innerHTML     = ws;
              new_word();
              update_wordspace();
@@ -207,6 +207,8 @@
         good_bad_ugly.play();
         
         };
+        hangman_pic.src         = "assets/images/hangman.gif";
+        hangman_pic.src         = "assets/images/hangman0.png";
         console.log(wordset.length);
         console.log(links.length);
         gptext.innerHTML = "guessed letters: ";
